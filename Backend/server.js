@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const Chat = require('./models/Chat');
 const cors = require('cors')
+const dotenv = require('dotenv')
 
 const app = express();
 
@@ -21,7 +22,7 @@ const JWT_SECRET = 'secret123@';
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/chatapp')
+mongoose.connect(`${process.env.MONGODB}`)
 
 // User signup
 app.post('/signup', async (req, res) => {
