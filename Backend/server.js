@@ -1,4 +1,5 @@
 const express = require('express');
+const { MongoClient } = require('mongodb');
 const http = require('http');
 const WebSocket = require('ws');
 const mongoose = require('mongoose');
@@ -24,7 +25,7 @@ const MONGODBURI = process.env.MONGODB;
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(MONGODBURI, {})
+mongoose.connect(MONGODBURI,console.log('connected succesufuly'))
 // User signup
 app.post('/signup', async (req, res) => {
   const { username, password } = req.body;
@@ -66,3 +67,26 @@ wss.on('connection', (ws) => {
 server.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
+
+
+
+
+// const dotenv = require('dotenv')
+// dotenv.config();
+
+// const uri = process.env.MONGODB;
+
+// async function connect() {
+//   const client = new MongoClient(uri);
+  
+//   try {
+//     await client.connect();
+//     console.log("Connected to MongoDB");
+//   } catch (err) {
+//     console.error("MongoDB connection error:", err);
+//   } finally {
+//     await client.close();
+//   }
+// }
+
+// connect();
