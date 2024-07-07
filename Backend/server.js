@@ -8,7 +8,7 @@ const User = require('./models/User');
 const Chat = require('./models/Chat');
 const cors = require('cors')
 const dotenv = require('dotenv')
-
+dotenv.config();
 const app = express();
 
 app.use(cors())
@@ -18,12 +18,13 @@ const wss = new WebSocket.Server({ server });
 
 const JWT_SECRET = 'secret123@';
 
+const MONGODBURI = process.env.MONGODB;
+
 // Middleware
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(`${process.env.MONGODB}`)
-
+mongoose.connect(MONGODBURI, {})
 // User signup
 app.post('/signup', async (req, res) => {
   const { username, password } = req.body;
