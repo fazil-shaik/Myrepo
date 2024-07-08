@@ -8,7 +8,7 @@ const Chat = ({ token }) => {
   const [chat, setChat] = useState([]);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://https://myrepo-1.onrender.com');
+    const socket = new WebSocket('wss://myrepo-1.onrender.com');
     socket.onopen = () => {
       setWs(socket);
     };
